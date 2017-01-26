@@ -17,6 +17,6 @@ AWS Lambda function to notify event to slack.
   - Trigger: Above SNS topic
   - Env vars:
     - SLACK_URL: URL which generated in incoming webhook
-    - SLACK_CHANNEL: Target slack channel
+    - SLACK_CHANNEL: Target slack channel (with #. e.g. `#watch-codeprep`)
 
 And then create ALARM on CloudWatch(Notification sent to above SNS)
