@@ -26,7 +26,6 @@ function processSns(context, sns) {
   }); 
 
   const message = JSON.parse(sns.Message);
-  console.log(message);
 
   var status = message.NewStateValue;
   if (status === "ALARM") {
@@ -34,7 +33,10 @@ function processSns(context, sns) {
   } else if (status === "OK") {
     status = ":+1: " + status;
   }   
-  var str = "*" +status +": " +message.AlarmDescription +"*" +"\n" + message.NewStateReason;
+  var str = "*" +status +"*\n" +
+    "Name: " + message.AlarmName + "\n" +
+    "Description: " + message.AlarmDescription +"\n" +
+    "Reason: " + message.NewStateReason;
   req.write(JSON.stringify({
     channel: slack_channel,
     text: str
